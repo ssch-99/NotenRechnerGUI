@@ -3,14 +3,11 @@ package ch.saschaschumacher.notenrechnergui;
 import ch.saschaschumacher.notenrechnergui.gui.MainPane;
 import ch.saschaschumacher.notenrechnergui.io.MajorMapReader;
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
-import java.io.IOException;
 import java.util.Map;
 
 public class ClassRoomGUI extends Application {

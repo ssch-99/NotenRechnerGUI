@@ -60,9 +60,6 @@ public class MainPane extends Pane {
             refreshText(this.course, numberLabelValue, list, preGradeFactorSlider.getValue());
         });
 
-
-
-
         VBox mainPane = new VBox();
         mainPane.setPadding(new Insets(10, 10, 10, 10));
         mainPane.getChildren().addAll(loadButton,numberLabel,numberLabelValue,preGradeFactorSlider,list);
@@ -75,7 +72,7 @@ public class MainPane extends Pane {
         numberLabelValue.setText(String.valueOf(course.getStudents().size()));
         listView.getItems().clear();
         for (Student student : course.getStudents()){
-            listView.getItems().add(student + ":" + student.getFinalGrade(value));
+            listView.getItems().add(student + "("+ this.majorMap.get(student.getMajor())+"):" + student.getFinalGrade(value));
         }
     }
 
