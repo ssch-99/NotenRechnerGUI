@@ -1,0 +1,7 @@
+bz	Bioanalytik und Zellbiologie
+ch	Chemie
+cb	Chemie und Bioprozesstechnik
+mi	Medizininformatik
+mt	Medizintechnik
+pt	Pharmatechnologie
+ut	Umwelttechnologie

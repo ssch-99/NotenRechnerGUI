@@ -1,0 +1,16 @@
+course-id: B-LS-MI 007
+course-name: Programmieren II
+name: Ernst Meier
+major: mi
+is_repeating: false
+exam-grade: 3.5
+pre-grade: 4.3, 5.1, 2.3
+name: Anna Schwarz
+major: mi
+is_repeating: true
+exam-grade: 3.5
+name: Livia Sommer
+major: mt
+is_repeating: false
+exam-grade: 5.5
+pre-grade: 4.8, 5.9, 4.9, 5.6, 5
