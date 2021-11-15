@@ -1,5 +1,6 @@
 package ch.saschaschumacher.notenrechnergui;
 
+import ch.saschaschumacher.notenrechnergui.gui.GraphicsPane;
 import ch.saschaschumacher.notenrechnergui.gui.MainPane;
 import ch.saschaschumacher.notenrechnergui.io.MajorMapReader;
 import javafx.application.Application;
@@ -20,7 +21,7 @@ public class ClassRoomGUI extends Application {
         Pane mainPane = new MainPane(majorMap);
         // Kick-off and wait for events...
         StackPane rootPane = new StackPane(mainPane);
-        Scene scene = new Scene(rootPane, 500, 500);
+        Scene scene = new Scene(rootPane, 1000, 600);
         stage.setScene(scene);
         stage.setTitle("Classroom App");
         stage.show();
