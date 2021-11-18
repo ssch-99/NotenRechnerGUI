@@ -15,10 +15,12 @@ public class ClassRoomGUI extends Application {
     @Override
     public void start(Stage stage) {
 
+        StateModel stateModel = new StateModel();
         MajorMapReader mapReader = new MajorMapReader("daten/major-map.txt");
         Map<String, String> majorMap = mapReader.readMap();
+        stateModel.setMajorMap(majorMap);
         // Create the components (well, just the main one, the rest is in there)
-        Pane mainPane = new MainPane(majorMap);
+        Pane mainPane = new MainPane(stage,stateModel);
         // Kick-off and wait for events...
         StackPane rootPane = new StackPane(mainPane);
         Scene scene = new Scene(rootPane, 1000, 600);

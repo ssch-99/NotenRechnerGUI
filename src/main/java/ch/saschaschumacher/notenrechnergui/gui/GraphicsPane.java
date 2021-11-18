@@ -1,8 +1,8 @@
 package ch.saschaschumacher.notenrechnergui.gui;
 
+import ch.saschaschumacher.notenrechnergui.StateModel;
 import ch.saschaschumacher.notenrechnergui.logic.Student;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
@@ -11,28 +11,41 @@ import javafx.scene.transform.Rotate;
 import javafx.scene.transform.Translate;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Collections;
+import java.util.Comparator;
+
 
 public class GraphicsPane extends Pane {
 
-    private List<Student> students = new ArrayList<>();
-    private Double preGradeFactor;
+    private StateModel stateModel;
 
+    public GraphicsPane(StateModel stateModel) {
+        this.stateModel = stateModel;
+
+        stateModel.addObserver(this::drawGraphics);
+
+    }
 
     private void drawGraphics() {
 
+        if(this.stateModel.isSortByGrade()){
+            this.stateModel.getCourse().getStudents().sort(Comparator.comparingDouble((Student s) -> s.getFinalGrade(this.stateModel.getPreGradeFactor())).reversed());
+        }else{
+            this.stateModel.getCourse().getStudents().sort(Comparator.comparing(Student::getName));
+        }
+
         this.getChildren().clear();
 
-        double barWidth = getWidth() / students.size();
+        double barWidth = getWidth() / this.stateModel.getCourse().getStudents().size();
 
-        for (int i = 0; i < students.size(); i++) {
-            Student student = students.get(i);
-            double barHeight = student.getFinalGrade(this.preGradeFactor) / 6.0 * getHeight();
+        for (int i = 0; i < this.stateModel.getCourse().getStudents().size(); i++) {
+            Student student = this.stateModel.getCourse().getStudents().get(i);
+            double barHeight = student.getFinalGrade(this.stateModel.getPreGradeFactor()) / 6.0 * getHeight();
             double x = i * barWidth;
             double y = getHeight() - barHeight; // die y-Koordinaten von JavaFX stehen auf de Kopf
             Rectangle gradeBar = new Rectangle(x , y, barWidth, barHeight);
 
-            if (student.getFinalGrade(preGradeFactor) >= 4) {
+            if (student.getFinalGrade(this.stateModel.getPreGradeFactor()) >= 4) {
                 gradeBar.setFill(Color.CORNFLOWERBLUE);
             } else {
                 gradeBar.setFill(Color.INDIANRED);
@@ -58,14 +71,4 @@ public class GraphicsPane extends Pane {
 
     }
 
-
-    public void setStudents(List<Student> students) {
-        this.students = students;
-        this.drawGraphics();
-    }
-
-    public void setPreGradeFactor(Double preGradeFactor) {
-        this.preGradeFactor = preGradeFactor;
-        this.drawGraphics();
-    }
 }
